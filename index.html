@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STM32 系列内部结构图谱</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page">
+    <div class="topbar">
+      <div class="brand">
+        <small>Chip Atlas</small>
+        <strong>STM32 系列内部结构总览</strong>
+      </div>
+      <div class="topbar-note" id="topbarNote">当前支持 STM32F103 与 STM32F4 两大系列，可按具体型号自动映射到对应内部结构模板。</div>
+    </div>
+
+    <section class="hero">
+      <div class="hero-head">
+        <div>
+          <div class="eyebrow" id="heroEyebrow">STM32 Internal Architecture Visualizer</div>
+          <h1 id="heroSku">STM32F103C8T6</h1>
+          <div class="hero-subtitle" id="heroSubtitle"></div>
+          <p class="hero-copy" id="heroCopy"></p>
+        </div>
+        <aside class="control-panel">
+          <h2>Series & Model</h2>
+          <div class="field">
+            <label>芯片系列</label>
+            <div class="family-switch" id="familyTabs"></div>
+          </div>
+          <div class="field">
+            <label for="chipSearch">输入完整型号或简写</label>
+            <input id="chipSearch" type="text" placeholder="例如：C8T6 / STM32F407VGT6 / F429">
+          </div>
+          <div class="field">
+            <label for="chipSelect">或者直接从列表选择</label>
+            <select id="chipSelect"></select>
+          </div>
+          <div class="hint" id="searchHint"></div>
+          <div class="quick-tags" id="quickTags"></div>
+        </aside>
+      </div>
+
+      <div class="stats" id="stats"></div>
+    </section>
+
+    <section class="board">
+      <div class="board-main">
+        <div class="section-head">
+          <div class="section-title">Internal Fabric</div>
+          <div class="section-desc" id="boardDesc"></div>
+        </div>
+        <div class="fabric" id="fabric"></div>
+      </div>
+      <aside class="board-side">
+        <div class="detail-chip" id="detailChip">当前模块</div>
+        <h2 class="detail-title" id="detailTitle"></h2>
+        <p class="detail-base" id="detailBase"></p>
+        <p class="detail-desc" id="detailDesc"></p>
+        <div class="detail-grid">
+          <div class="detail-box">
+            <strong>模块职责</strong>
+            <span id="detailRoles"></span>
+          </div>
+          <div class="detail-box">
+            <strong>当前模板适用性</strong>
+            <span id="detailAvailability"></span>
+          </div>
+        </div>
+        <p class="detail-note" id="detailNote"></p>
+        <ul class="detail-list" id="detailRegisters"></ul>
+      </aside>
+    </section>
+
+    <section class="pin-panel">
+      <div class="section-head">
+        <div class="section-title">Pin Explorer</div>
+        <div class="section-desc" id="pinDesc">按引脚号或引脚名查询当前型号的封装定义、I/O 类型、电平与复用功能。</div>
+      </div>
+      <div class="pin-shell">
+        <div class="pin-toolbar">
+          <div class="field">
+            <label for="pinProfileSelect">封装 / 料号</label>
+            <select id="pinProfileSelect"></select>
+          </div>
+          <div class="field">
+            <label for="pinSearch">引脚查询</label>
+            <input id="pinSearch" type="text" placeholder="例如：12 / PA2 / OSC_IN">
+          </div>
+          <div class="field">
+            <label for="pinSelect">引脚列表</label>
+            <select id="pinSelect"></select>
+          </div>
+          <div class="hint" id="pinHint"></div>
+        </div>
+
+        <div class="pin-empty" id="pinEmpty"></div>
+
+        <div class="pin-layout" id="pinLayout">
+          <aside class="pin-detail">
+            <div class="detail-chip" id="pinBadge">Pin Detail</div>
+            <h2 class="detail-title" id="pinTitle"></h2>
+            <p class="detail-base" id="pinMeta"></p>
+            <div class="detail-grid">
+              <div class="detail-box">
+                <strong>类型</strong>
+                <span id="pinType"></span>
+              </div>
+              <div class="detail-box">
+                <strong>I/O 电平</strong>
+                <span id="pinLevel"></span>
+              </div>
+              <div class="detail-box">
+                <strong>主功能</strong>
+                <span id="pinPrimary"></span>
+              </div>
+              <div class="detail-box">
+                <strong>数据来源</strong>
+                <span id="pinSource"></span>
+              </div>
+            </div>
+            <div class="pin-alt-group">
+              <strong>默认复用功能</strong>
+              <p id="pinDefaultAlt"></p>
+            </div>
+            <div class="pin-alt-group">
+              <strong>重定义 / Remap 功能</strong>
+              <p id="pinRemapAlt"></p>
+            </div>
+            <p class="detail-note" id="pinNotes"></p>
+          </aside>
+
+          <div class="pin-table-wrap">
+            <table class="pin-table">
+              <thead>
+                <tr>
+                  <th>引脚号</th>
+                  <th>引脚名</th>
+                  <th>类型</th>
+                  <th>I/O 电平</th>
+                  <th>主功能</th>
+                  <th>默认复用功能</th>
+                </tr>
+              </thead>
+              <tbody id="pinTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="catalog">
+      <div class="section-head">
+        <div class="section-title">Model Matrix</div>
+        <div class="section-desc" id="catalogDesc">当前系列的全部模板与常见型号映射。</div>
+      </div>
+      <div class="catalog-groups" id="catalog"></div>
+    </section>
+
+    <section class="source-panel">
+      <div class="section-head">
+        <div class="section-title">Official Sources</div>
+        <div class="section-desc" id="sourceDesc">页面数据整理自 ST 官方参考手册、数据手册和产品页。</div>
+      </div>
+      <ul class="source-list" id="sources"></ul>
+      <p class="footnote" id="footnote">同一系列中的很多具体料号共享同一套内部总线骨架，真正决定结构差异的通常是内核代次、总线拓扑、内存层级和外设扩展级别。因此页面采用“结构模板 + 常见型号映射”的方式，既方便看懂单颗芯片，也便于横向比较整条产品线。</p>
+    </section>
+  </div>
+
+  <script src="data-f103.js"></script>
+  <script src="data-f4.js"></script>
+  <script src="data-pinouts.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

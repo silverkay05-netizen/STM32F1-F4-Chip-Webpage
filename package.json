@@ -1,0 +1,9 @@
+{
+  "name": "stm32-chip-atlas",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Static STM32 architecture and pin explorer site for GitHub Pages.",
+  "scripts": {
+    "generate:pinouts": "node scripts/generate-pinouts.js"
+  }
+}
